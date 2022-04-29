@@ -8,3 +8,5 @@
 </ul>
   
   
+  ![diagram1](/diagram1.jpg)
+  ![diagram2](/diagram2.jpg)
