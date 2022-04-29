@@ -1,0 +1,24 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "backpack2-data-parser": "^2.0.1",
+    "backpack2-promise-router": "^1.0.0",
+    "backpack2-promise-server": "^1.0.0",
+    "body-parser": "^1.17.2",
+    "bcrypt": "^5.0.1",
+    "joi-password-complexity": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "request": "^2.88.2"
+  }
+}
