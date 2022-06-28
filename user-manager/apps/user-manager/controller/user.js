@@ -47,5 +47,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   existenceUser,
-  isStaff,
+  isStaff, // someone who his role is 3
 };

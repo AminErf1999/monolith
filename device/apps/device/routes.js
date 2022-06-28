@@ -35,7 +35,7 @@ module.exports = {
   },
 
   "/get-user-device": {
-    GET: {
+    POST: {
       function: userDeviceCtrl.getUserDevice,
       middlewares: [verifyToken, dataParser, isNullSetDeviceToUser],
     },
