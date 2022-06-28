@@ -6,9 +6,6 @@ const bcrypt = require("bcrypt");
 
 async function login(req, res) {
   let user = await modelUser.getUserByItem("username", req.data.username);
-  console.log("user");
-  console.log(user);
-
   const credentials = {
     username: user[0].username,
     password: user[0].password,
