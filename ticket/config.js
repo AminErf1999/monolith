@@ -1,18 +1,17 @@
 const serverConfig = {
-    hostname: '127.0.0.1',
-    port: 3000,
-    eventEmitter: null
+  hostname: "127.0.0.1",
+  port: 3002,
+  eventEmitter: null,
 };
 
 const routerConfig = {
-    eventEmitter: null
+  eventEmitter: null,
 };
 
-const appsDirectory = './apps';
+const appsDirectory = "./apps";
 
 module.exports = {
-    serverConfig,
-    routerConfig,
-    appsDirectory
+  serverConfig,
+  routerConfig,
+  appsDirectory,
 };
-

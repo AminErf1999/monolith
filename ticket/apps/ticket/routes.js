@@ -1,97 +1,110 @@
-const ticketCtrl = require('./controllers/ticket');
-const ticketAssignCtrl = require('./controllers/ticket_assign');
-const dataParser = require('backpack2-data-parser');
-const {isNullFieldsTicket, isValidateStatus, isNullAuthor, isNullDevice, isNullDate} = require('./middlewares/ticket');
-const {isNullTicketId, isNullId} = require('./middlewares/ticket-assign');
-const {verifyToken} = require("../user-manager/middlewares/authentication");
-const {isSupporter, isStaff, isAdminSupporter, isAdmin} = require("../user-manager/middlewares/authorization");
-
+const ticketCtrl = require("./controller/ticket");
+const ticketAssignCtrl = require("./controller/ticket_assign");
+const {
+  isNullFieldsTicket,
+  isValidateStatus,
+  isNullAuthor,
+  isNullDevice,
+  isNullDate,
+} = require("./middlewares/ticket");
+const { isNullTicketId, isNullId } = require("./middlewares/ticket-assign");
+const { verifyToken } = require("./middlewares/authentication");
+const dataParser = require("backpack2-data-parser");
+const {
+  isSupporter,
+  isStaff,
+  isAdminSupporter,
+  isAdmin,
+} = require("./middlewares/authorization");
 
 module.exports = {
-    '/ticket': {
-        POST: {
-            function: ticketCtrl.createTicket,
-            middlewares: [dataParser, isNullFieldsTicket, verifyToken, isStaff]
-        },
-        GET: {
-            function: ticketCtrl.getTicketById,
-            middlewares: [dataParser, verifyToken, isAdminSupporter]
-        }
+  "/ticket": {
+    GET: {
+      function: ticketCtrl.getTicketById,
+      middlewares: [verifyToken, dataParser, isAdminSupporter],
     },
-
-    '/tickets': {
-        GET: {
-            function: ticketCtrl.getAllTickets,
-            middlewares: [verifyToken, isAdminSupporter]
-        }
+    POST: {
+      function: ticketCtrl.createTicket,
+      middlewares: [verifyToken, dataParser, isNullFieldsTicket, isStaff],
     },
+  },
 
-    '/device-ticket': {
-        GET: {
-            function: ticketCtrl.getTicketByDevice,
-            middlewares: [dataParser, verifyToken, isAdminSupporter]
-        }
+  "/tickets": {
+    GET: {
+      function: ticketCtrl.getAllTickets,
+      middlewares: [verifyToken, isAdminSupporter],
     },
+  },
 
-    '/user-ticket': {
-        GET: {
-            function: ticketCtrl.getTicketByAuthor,
-            middlewares: [dataParser, verifyToken, isAdminSupporter]
-        }
+  "/device-ticket": {
+    GET: {
+      function: ticketCtrl.getTicketByDevice,
+      middlewares: [verifyToken, dataParser, isAdminSupporter],
     },
+  },
 
-    '/ticket-by-date': {
-        GET: {
-            function: ticketCtrl.getTicketByDate,
-            middlewares: [dataParser, isNullDate, verifyToken]
-        }
+  "/user-ticket": {
+    GET: {
+      function: ticketCtrl.getTicketByAuthor,
+      middlewares: [verifyToken, dataParser, isAdminSupporter],
     },
+  },
 
-    '/ticket-by-status': {
-        GET: {
-            function: ticketCtrl.getTicketByStatus,
-            middlewares: [dataParser, isValidateStatus, verifyToken, isAdminSupporter]
-        }
+  "/ticket-by-date": {
+    GET: {
+      function: ticketCtrl.getTicketByDate,
+      middlewares: [verifyToken, dataParser, isNullDate],
     },
+  },
 
-    '/ticket-close' : {
-        POST: {
-            function: ticketCtrl.setStatusTicketClose,
-            middlewares: [dataParser, verifyToken, isSupporter]
-        }
+  "/ticket-by-status": {
+    GET: {
+      function: ticketCtrl.getTicketByStatus,
+      middlewares: [
+        verifyToken,
+        dataParser,
+        isValidateStatus,
+        isAdminSupporter,
+      ],
     },
+  },
 
-    '/ticket-assign': {
-        POST: {
-            function: ticketAssignCtrl.setTicketAssign,
-            middlewares: [dataParser, isNullTicketId]
-        },
-        GET: {
-            function: ticketAssignCtrl.getSupporterTicketAssign,
-            middlewares: [verifyToken, isSupporter]
-        }
+  "/ticket-close": {
+    POST: {
+      function: ticketCtrl.setStatusTicketClose,
+      middlewares: [verifyToken, dataParser, isSupporter],
     },
+  },
 
-    '/ticket-assigns' : {
-        GET: {
-            function: ticketAssignCtrl.getAllTicketAssign,
-            middlewares: [dataParser, verifyToken, isAdmin]
-        }
+  "/ticket-assign": {
+    POST: {
+      function: ticketAssignCtrl.setTicketAssign,
+      middlewares: [dataParser, isNullTicketId],
     },
-
-    '/unassigned-tickets' : {
-        GET: {
-            function: ticketAssignCtrl.getUnassignedTicketAssign,
-            middlewares: [verifyToken, isAdminSupporter]
-        }
+    GET: {
+      function: ticketAssignCtrl.getSupporterTicketAssign,
+      middlewares: [verifyToken, isSupporter],
     },
+  },
 
-    '/ticket-assign/set-is-active-false' : {
-        POST: {
-            function: ticketAssignCtrl.setActiveFalse,
-            middlewares: [dataParser, verifyToken, isSupporter]
-        }
-    }
+  "/ticket-assigns": {
+    GET: {
+      function: ticketAssignCtrl.getAllTicketAssign,
+      middlewares: [verifyToken, dataParser, isAdmin],
+    },
+  },
 
-}
+  "/unassigned-tickets": {
+    GET: {
+      function: ticketAssignCtrl.getUnassignedTicketAssign,
+      middlewares: [verifyToken, isAdminSupporter],
+    },
+  },
 
+  "/ticket-assign/set-is-active-false": {
+    POST: {
+      function: ticketAssignCtrl.setActiveFalse,
+      middlewares: [verifyToken, dataParser, isSupporter],
+    },
+  },
+};
