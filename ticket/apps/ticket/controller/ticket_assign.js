@@ -19,7 +19,8 @@ async function setFalseActiveCloseTicket(user_id, ticket_id) {
   await TicketAssign.setActiveFalse(ticket_assign[0].id);
 }
 
-async function existenceTicketAssign(user_id, ticket_id) {
+async function existenceTicketAssign(req, res) {
+  const { user_id, ticket_id } = req.data;
   let ticket_assign = await TicketAssign.getTicketAssign(user_id, ticket_id);
   return ticket_assign.length >= 1;
 }

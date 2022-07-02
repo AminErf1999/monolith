@@ -1,5 +1,6 @@
 const ticketCtrl = require("./controller/ticket");
 const ticketAssignCtrl = require("./controller/ticket_assign");
+
 const {
   isNullFieldsTicket,
   isValidateStatus,
@@ -84,6 +85,13 @@ module.exports = {
     GET: {
       function: ticketAssignCtrl.getSupporterTicketAssign,
       middlewares: [verifyToken, isSupporter],
+    },
+  },
+
+  "/existance-ticket-assign": {
+    POST: {
+      function: ticketAssignCtrl.existenceTicketAssign,
+      middlewares: [verifyToken, dataParser],
     },
   },
 
