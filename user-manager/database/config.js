@@ -1,11 +1,15 @@
 const databaseConfig = {
-  user: "postgres",
-  host: "127.0.0.1",
-  database: "user-manager",
-  password: "123456",
-  port: 5432,
+    // user: 'postgres',
+    user:'docker',
+    // host: '127.0.0.1',
+    host:'db',
+    // database: 'postgres',
+    database: 'docker',
+    password: '123456',
+    // port: 5432,
+    // port :4321,
 };
 
 module.exports = {
-  databaseConfig,
+    databaseConfig,
 };
