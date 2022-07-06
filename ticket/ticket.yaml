@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ticket
+spec:
+  containers:
+    - name: ticket
+      image: jp.icr.io/coder135_kubernetes/ticket:1
+      ports:
+        - containerPort: 3002
+  imagePullSecrets:
+    - name: icr

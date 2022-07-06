@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: user-manager
+spec:
+  containers:
+    - name: user-manager
+      image: jp.icr.io/coder135_kubernetes/user-manager:1
+      ports:
+        - containerPort: 3001
+  imagePullSecrets:
+    - name: icr

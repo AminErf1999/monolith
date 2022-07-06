@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: message
+spec:
+  containers:
+    - name: message
+      image: jp.icr.io/coder135_kubernetes/message:1
+      ports:
+        - containerPort: 3003
+  imagePullSecrets:
+    - name: icr
